@@ -57,9 +57,9 @@ body {
   @apply pt-20 lg:pt-32;
 }
 
-/* .reveal-up {
+.reveal-up {
   @apply translate-y-20 opacity-0;
-} */
+}
 
 /* Menu btn */
 
