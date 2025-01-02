@@ -2,6 +2,7 @@ import { ReactLenis } from "lenis/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import LiveCodeEditor from "./components/LiveCodeEditor";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -39,6 +40,14 @@ function App() {
       <main>
         <Hero />
         <About />
+        <section className="section">
+          <div className="container">
+            <h2 className="headline-2 mb-8 reveal-up">Live Code Editor</h2>
+            <div className="reveal-up">
+              <LiveCodeEditor />
+            </div>
+          </div>
+        </section>
         <Skill />
         <Projects />
         <Contact />

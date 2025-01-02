@@ -9,6 +9,7 @@ A modern, animated portfolio website built with React, featuring smooth scrollin
 - **Modern UI**: Clean and modern user interface styled with Tailwind CSS
 - **Smooth Scrolling**: Enhanced scrolling experience with Lenis
 - **Contact Form**: Integrated contact form functionality using Getform.io
+- **Live Code Editor**: Interactive JavaScript code editor with real-time execution and syntax highlighting
 
 ## 🚀 Tech Stack
 
@@ -18,6 +19,7 @@ A modern, animated portfolio website built with React, featuring smooth scrollin
 - [GSAP](https://gsap.com/) - Professional-grade animation library
 - [Lenis](https://lenis.darkroom.engineering/) - Smooth scroll library
 - [Getform.io](https://getform.io/) - Form backend platform
+- [Prism React Renderer](https://www.npmjs.com/package/prism-react-renderer) - Syntax highlighting for the code editor
 
 ## 🛠️ Installation Steps
 
