@@ -2,6 +2,12 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
+    imgSrc: "/images/project-7.jpg",
+    title: "StayFinder | Discover Your Perfect Stay",
+    tags: ["React JS", "Redux", "Tailwind CSS", "JWT Token", "Axios"],
+    projectLink: "https://stay-finder-iota.vercel.app/",
+  },
+  {
     imgSrc: "/images/project-1.jpg",
     title: "NetflixGPT | AI Powered Movie Recommendations",
     tags: ["React JS", "Redux", "Tailwind CSS", "Firebase", "GPT-3"],
