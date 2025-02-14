@@ -33,6 +33,7 @@ const Hero = () => {
               label="Download CV"
               icon="download"
               href="./Milind_Kumar_Sahu_V1_Masked.pdf"
+              rel="nofollow"
             />
 
             <ButtonOutline

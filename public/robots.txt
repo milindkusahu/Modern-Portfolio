@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Disallow: /Milind_Kumar_Sahu_V1_Masked.pdf
