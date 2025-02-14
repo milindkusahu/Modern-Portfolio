@@ -32,7 +32,7 @@ const Hero = () => {
             <ButtonPrimary
               label="Download CV"
               icon="download"
-              href="https://drive.google.com/file/d/1G30czZkoYwSi1YZBg86EeGIJtPkQWtKL/view?usp=sharing"
+              href="./Milind_Kumar_Sahu_V1_Masked.pdf"
             />
 
             <ButtonOutline
