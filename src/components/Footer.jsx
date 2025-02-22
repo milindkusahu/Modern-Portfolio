@@ -104,7 +104,7 @@ const Footer = () => {
           </a>
 
           <p className="text-zinc-500 text-sm reveal-up">
-            &copy; 2025 <span className="text-zinc-200">milindsahu</span>
+            &copy; 2025 <span className="text-zinc-200">MilindSahu.com</span>
           </p>
         </div>
       </div>
