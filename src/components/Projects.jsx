@@ -11,7 +11,7 @@ const projects = [
     imgSrc: "/images/project-1.jpg",
     title: "NetflixGPT | AI Powered Movie Recommendations",
     tags: ["React JS", "Redux", "Tailwind CSS", "Firebase", "GPT-3"],
-    projectLink: "https://github.com/milindkusahu/NetflixGPT",
+    projectLink: "https://flix-gpt-seven.vercel.app/",
   },
   {
     imgSrc: "/images/project-2.jpg",
