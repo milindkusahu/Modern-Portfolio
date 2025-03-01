@@ -2,27 +2,46 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
+    imgSrc: "/images/project-8.jpg",
+    title: "Stock Momentum Analyzers",
+    tags: ["React.js", "TypeScript", "Tailwind CSS", "React PDF", "Node.js"],
+    projectLink: "https://ai-stock-analyse.vercel.app/",
+  },
+  {
     imgSrc: "/images/project-7.jpg",
     title: "StayFinder | Discover Your Perfect Stay",
-    tags: ["React JS", "Redux", "Tailwind CSS", "JWT Token", "Axios"],
+    tags: ["React.js", "Redux", "Tailwind CSS", "JWT Token", "Axios"],
     projectLink: "https://stay-finder-iota.vercel.app/",
   },
   {
     imgSrc: "/images/project-1.jpg",
     title: "NetflixGPT | AI Powered Movie Recommendations",
-    tags: ["React JS", "Redux", "Tailwind CSS", "Firebase", "GPT-3"],
+    tags: ["React.js", "Redux", "Tailwind CSS", "Firebase", "GPT-3"],
     projectLink: "https://flix-gpt-seven.vercel.app/",
   },
   {
     imgSrc: "/images/project-2.jpg",
     title: "Medify | Medical Center Slot Booking",
-    tags: ["React JS", "Material-UI", "Swiper JS", "Axios"],
+    tags: ["React.js", "Material-UI", "Swiper JS", "Axios"],
     projectLink: "https://medify-three-puce.vercel.app/",
+  },
+  {
+    imgSrc: "/images/project-9.jpg",
+    title: "BotAI Chatbot | AI Powered Chatbot",
+    tags: ["React.js", "Material-UI", "Tailwind CSS", "Material Icons"],
+    projectLink: "https://bot-ai-chatbot-five.vercel.app/",
   },
   {
     imgSrc: "/images/project-3.jpg",
     title: "QKart | E-Commerce Platform",
-    tags: ["ReactJS", "NodeJS", "Express", "Mongo DB", "Mongoose", "JWT Token"],
+    tags: [
+      "ReactJS",
+      "Node.js",
+      "Express",
+      "Mongo DB",
+      "Mongoose",
+      "JWT Token",
+    ],
     projectLink: "https://qkart-frontend-opal-psi.vercel.app/",
   },
   {
