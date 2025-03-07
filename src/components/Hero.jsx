@@ -45,14 +45,20 @@ const Hero = () => {
         </div>
 
         <div className="hidden lg:block">
-          <figure className="w-full max-w-[480px] ml-auto bg-gradient-to-t from-sky-400 via-25% via-sky-400/40 to-65% rounded-[60px] overflow-hidden">
-            <img
-              src=""
-              width={656}
-              height={800}
-              alt="Milind Kumar Sahu"
-              className="w-full"
-            />
+          <figure className="w-full max-w-[305px] ml-auto">
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-sky-400 opacity-50 blur-md animate-pulse"></div>
+
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-sky-500 opacity-30 blur-lg animate-spin-slow"></div>
+
+              <img
+                src="/images/milind-kumar-sahu.png"
+                width={656}
+                height={800}
+                alt="Milind Kumar Sahu"
+                className="relative w-full h-full object-cover rounded-full z-10"
+              />
+            </div>
           </figure>
         </div>
       </div>

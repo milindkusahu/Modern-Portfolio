@@ -128,3 +128,34 @@ body {
 .text-field::placeholder {
   @apply text-zinc-400;
 }
+
+/* Hero Image Animation */
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg) scale(1.05);
+  }
+  to {
+    transform: rotate(360deg) scale(1.08);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.07);
+  }
+}
