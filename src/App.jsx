@@ -14,6 +14,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import GithubCalender from "./components/GithubCalender";
+import MediumBlog from "./components/MediumBlog";
 
 function App() {
   useGSAP(() => {
@@ -59,6 +60,13 @@ function App() {
         </section>
         <Skill />
         <Projects />
+        <section id="blog" className="section">
+          <div className="container">
+            <div className="reveal-up">
+              <MediumBlog />
+            </div>
+          </div>
+        </section>
         <Contact />
       </main>
       <Footer />
