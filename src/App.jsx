@@ -13,6 +13,7 @@ import Skill from "./components/Skill";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import GithubCalender from "./components/GithubCalender";
 
 function App() {
   useGSAP(() => {
@@ -40,6 +41,14 @@ function App() {
       <main>
         <Hero />
         <About />
+        <section className="section">
+          <div className="container">
+            <h2 className="headline-2 mb-8 reveal-up">Proof of Work</h2>
+            <div className="reveal-up w-full overflow-x-auto pb-4">
+              <GithubCalender />
+            </div>
+          </div>
+        </section>
         <section className="section">
           <div className="container">
             <h2 className="headline-2 mb-8 reveal-up">Live Code Editor</h2>
