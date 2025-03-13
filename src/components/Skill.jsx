@@ -1,45 +1,92 @@
 import SkillCard from "./SkillCard";
 
 const skillItem = [
+  // Frontend Fundamentals
   {
-    imgSrc: "/images/figma.svg",
-    label: "Figma",
-    desc: "Design tool",
+    imgSrc: "/images/html5.svg",
+    label: "HTML5",
+    desc: "Structure",
   },
   {
     imgSrc: "/images/css3.svg",
     label: "CSS",
-    desc: "User Interface",
+    desc: "Styling",
+  },
+  {
+    imgSrc: "/images/sass.svg",
+    label: "Sass",
+    desc: "CSS Preprocessor",
   },
   {
     imgSrc: "/images/javascript.svg",
     label: "JavaScript",
-    desc: "Interaction",
+    desc: "Programming",
   },
   {
-    imgSrc: "/images/nodejs.svg",
-    label: "NodeJS",
-    desc: "Web Server",
+    imgSrc: "/images/typescript.svg",
+    label: "TypeScript",
+    desc: "Type-Safe JS",
   },
-  {
-    imgSrc: "/images/expressjs.svg",
-    label: "ExpressJS",
-    desc: "Node Framework",
-  },
-  {
-    imgSrc: "/images/mongodb.svg",
-    label: "MongoDB",
-    desc: "Database",
-  },
+
+  // Frontend Frameworks & Libraries
   {
     imgSrc: "/images/react.svg",
     label: "React",
-    desc: "Framework",
+    desc: "UI Library",
+  },
+  {
+    imgSrc: "/images/nextjs.svg",
+    label: "Next.js",
+    desc: "React Framework",
   },
   {
     imgSrc: "/images/tailwindcss.svg",
     label: "TailwindCSS",
-    desc: "User Interface",
+    desc: "Utility Framework",
+  },
+  {
+    imgSrc: "/images/bootstrap.svg",
+    label: "Bootstrap",
+    desc: "CSS Framework",
+  },
+
+  // Backend & Database
+  {
+    imgSrc: "/images/nodejs.svg",
+    label: "Node.js",
+    desc: "Runtime Environment",
+  },
+  {
+    imgSrc: "/images/expressjs.svg",
+    label: "Express.js",
+    desc: "Backend Framework",
+  },
+  {
+    imgSrc: "/images/mongodb.svg",
+    label: "MongoDB",
+    desc: "NoSQL Database",
+  },
+  {
+    imgSrc: "/images/postgresql.svg",
+    label: "PostgreSQL",
+    desc: "SQL Database",
+  },
+  {
+    imgSrc: "/images/firebase.svg",
+    label: "Firebase",
+    desc: "Backend Platform",
+  },
+
+  // Tools & Operations
+  {
+    imgSrc: "/images/figma.svg",
+    label: "Figma",
+    desc: "UI/UX Design",
+  },
+  {
+    imgSrc: "/images/docker.svg",
+    label: "Docker",
+    desc: "Containerization",
   },
 ];
 
