@@ -1,14 +1,81 @@
 import { useMediumPosts } from "./MediumBlogFetcher";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+
+const FALLBACK_POSTS = [
+  {
+    id: "fallback-1",
+    title: "Building Responsive React Components with Tailwind CSS",
+    excerpt:
+      "Learn how to create beautiful, responsive UI components using React and Tailwind CSS. This guide walks through best practices and common patterns.",
+    thumbnail: "https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png",
+    link: "https://medium.com/@milindkusahu",
+    formattedDate: "Mar 15, 2025",
+    readTime: "5 min read",
+    author: "milindkusahu",
+  },
+  {
+    id: "fallback-2",
+    title: "Optimizing Performance in React Applications",
+    excerpt:
+      "Discover techniques to improve the performance of your React applications, from code splitting to memoization and efficient state management.",
+    thumbnail: "https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png",
+    link: "https://medium.com/@milindkusahu",
+    formattedDate: "Feb 28, 2025",
+    readTime: "7 min read",
+    author: "milindkusahu",
+  },
+  {
+    id: "fallback-3",
+    title: "Creating Animations with GSAP in React",
+    excerpt:
+      "A comprehensive guide to implementing smooth animations in your React projects using GreenSock Animation Platform (GSAP).",
+    thumbnail: "https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png",
+    link: "https://medium.com/@milindkusahu",
+    formattedDate: "Jan 20, 2025",
+    readTime: "6 min read",
+    author: "milindkusahu",
+  },
+];
 
 function MediumBlog() {
-  const { posts, loading, error } = useMediumPosts("milindkusahu"); // Replace with your Medium username
+  const {
+    posts: fetchedPosts,
+    loading,
+    error,
+  } = useMediumPosts("milindkusahu");
+  const [displayPosts, setDisplayPosts] = useState([]);
+  const [useFallback, setUseFallback] = useState(false);
   const containerRef = useRef(null);
+  const retryTimeoutRef = useRef(null);
+
+  const placeholderImage =
+    "https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png";
 
   useEffect(() => {
-    if (!loading && posts.length > 0 && containerRef.current) {
-      // Apply animations when posts are loaded
+    if (loading) return;
+
+    if (error || fetchedPosts.length === 0) {
+      if (!useFallback) {
+        console.log("Using fallback posts due to error:", error);
+        setUseFallback(true);
+        setDisplayPosts(FALLBACK_POSTS);
+
+        retryTimeoutRef.current = setTimeout(() => {
+          setUseFallback(false);
+        }, 30000);
+      }
+    } else {
+      if (retryTimeoutRef.current) {
+        clearTimeout(retryTimeoutRef.current);
+      }
+      setUseFallback(false);
+      setDisplayPosts(fetchedPosts);
+    }
+  }, [fetchedPosts, loading, error, useFallback]);
+
+  useEffect(() => {
+    if (displayPosts.length > 0 && containerRef.current) {
       gsap.from(".blog-card", {
         y: 30,
         opacity: 0,
@@ -17,21 +84,15 @@ function MediumBlog() {
         ease: "power2.out",
       });
     }
-  }, [loading, posts]);
+  }, [displayPosts]);
 
-  // Default placeholder image if post has no image
-  const placeholderImage =
-    "https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png";
-
-  if (error) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-zinc-400">
-          Failed to load Medium posts. Please check back later.
-        </p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    return () => {
+      if (retryTimeoutRef.current) {
+        clearTimeout(retryTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div ref={containerRef} className="medium-blog">
@@ -53,9 +114,9 @@ function MediumBlog() {
             </div>
           ))}
         </div>
-      ) : posts.length > 0 ? (
+      ) : displayPosts.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {displayPosts.map((post) => (
             <a
               href={post.link}
               target="_blank"
@@ -99,9 +160,19 @@ function MediumBlog() {
         </div>
       )}
 
+      {useFallback && (
+        <div className="mt-4 text-center">
+          <p className="text-zinc-400 text-sm italic">
+            Displaying sample posts while trying to connect to Medium...
+          </p>
+        </div>
+      )}
+
       <div className="mt-8 text-center">
         <a
-          href={`https://medium.com/@${posts[0]?.author || "milindkusahu"}`}
+          href={`https://medium.com/@${
+            displayPosts[0]?.author || "milindkusahu"
+          }`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary inline-flex items-center"

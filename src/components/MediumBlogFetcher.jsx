@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export function useMediumPosts(username = "milindkusahu") {
   const [posts, setPosts] = useState([]);
@@ -10,131 +11,80 @@ export function useMediumPosts(username = "milindkusahu") {
       try {
         setLoading(true);
 
-        const corsProxy = "https://api.allorigins.win/get?url=";
-        const mediumRssFeed = `https://medium.com/feed/@${username}`;
-        const encodedUrl = encodeURIComponent(mediumRssFeed);
+        const response = await axios.get(
+          `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`
+        );
 
-        const response = await fetch(`${corsProxy}${encodedUrl}`);
-        const data = await response.json();
-
-        if (!data.contents) {
+        if (response.status !== 200 || response.data.status !== "ok") {
           throw new Error("Failed to fetch Medium posts");
         }
 
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+        if (!response.data.items || response.data.items.length === 0) {
+          throw new Error("No Medium posts found");
+        }
 
-        const items = xmlDoc.querySelectorAll("item");
-        const mediumPosts = await Promise.all(
-          Array.from(items).map(async (item) => {
-            const content =
-              item.querySelector("content\\:encoded")?.textContent || "";
-            const tempDiv = document.createElement("div");
-            tempDiv.innerHTML = content;
+        const mediumPosts = response.data.items.map((item) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = item.content;
 
-            const link = item.querySelector("link")?.textContent || "";
+          let thumbnail = item.thumbnail;
 
-            let thumbnail = null;
-            try {
-              if (link) {
-                const articleResponse = await fetch(
-                  `${corsProxy}${encodeURIComponent(link)}`
-                );
-                const articleData = await articleResponse.json();
-
-                if (articleData.contents) {
-                  const articleDoc = new DOMParser().parseFromString(
-                    articleData.contents,
-                    "text/html"
-                  );
-
-                  // Try to extract Open Graph image
-                  const ogImage = articleDoc.querySelector(
-                    'meta[property="og:image"]'
-                  );
-                  if (ogImage && ogImage.getAttribute("content")) {
-                    thumbnail = ogImage.getAttribute("content");
-                  }
-
-                  // If no OG image, try Twitter image
-                  if (!thumbnail) {
-                    const twitterImage = articleDoc.querySelector(
-                      'meta[name="twitter:image"]'
-                    );
-                    if (twitterImage && twitterImage.getAttribute("content")) {
-                      thumbnail = twitterImage.getAttribute("content");
-                    }
-                  }
-                }
-              }
-            } catch (imgError) {
-              console.warn("Error fetching OG image:", imgError);
-              // Continue without the image
+          if (!thumbnail) {
+            const imgElement = tempDiv.querySelector("img");
+            if (imgElement && imgElement.src) {
+              thumbnail = imgElement.src;
             }
+          }
 
-            // If still no image, extract from content as before (fallback)
-            if (!thumbnail) {
-              // Try to find Medium's featured image
-              const featuredImage = tempDiv.querySelector(
-                'img[src*="cdn-images"]'
-              );
-              if (featuredImage && featuredImage.src) {
-                thumbnail = featuredImage.src;
-              } else if (tempDiv.querySelector("img")) {
-                // Get any image as last resort
-                thumbnail = tempDiv.querySelector("img").src;
-              }
-            }
+          if (!thumbnail) {
+            thumbnail =
+              "https://miro.medium.com/max/1200/1*jfdwtvU6V6g99q3G7gq7dQ.png";
+          }
 
-            // Extract the first paragraph for excerpt
-            let excerpt = "";
+          let excerpt = item.description || "";
+
+          if (!excerpt || excerpt.startsWith("<")) {
             const paragraphs = tempDiv.querySelectorAll("p");
             for (let i = 0; i < paragraphs.length; i++) {
               const text = paragraphs[i].textContent.trim();
               if (text.length > 10) {
-                // Ensure it's not an empty paragraph
                 excerpt = text;
                 break;
               }
             }
+          }
 
-            // Shorten excerpt if needed
-            if (excerpt.length > 160) {
-              excerpt = excerpt.substring(0, 157) + "...";
-            }
+          excerpt = excerpt.replace(/<[^>]*>/g, "");
 
-            // Get publication date
-            const pubDate = new Date(
-              item.querySelector("pubDate")?.textContent || ""
-            );
+          if (excerpt.length > 160) {
+            excerpt = excerpt.substring(0, 157) + "...";
+          }
 
-            const guid = item.querySelector("guid")?.textContent || "";
+          const pubDate = new Date(item.pubDate);
 
-            const postId = guid.split("/").pop();
-
-            return {
-              id: postId,
-              title: item.querySelector("title")?.textContent || "Untitled",
-              link,
-              pubDate,
-              formattedDate: pubDate.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              }),
-              excerpt,
-              thumbnail,
-              readTime: calculateReadTime(tempDiv.textContent),
-              author: username,
-            };
-          })
-        );
+          return {
+            id: item.guid || Math.random().toString(36).substring(2, 15),
+            title: item.title || "Untitled",
+            link: item.link || "",
+            pubDate,
+            formattedDate: pubDate.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            }),
+            excerpt,
+            thumbnail,
+            readTime: calculateReadTime(tempDiv.textContent),
+            author: username,
+          };
+        });
 
         setPosts(mediumPosts);
         setError(null);
       } catch (err) {
         console.error("Error fetching Medium posts:", err);
         setError(err.message);
+        setPosts([]);
       } finally {
         setLoading(false);
       }
@@ -147,9 +97,8 @@ export function useMediumPosts(username = "milindkusahu") {
 }
 
 function calculateReadTime(content) {
-  // Average reading speed (words per minute)
   const wordsPerMinute = 200;
-  const wordCount = content.trim().split(/\s+/).length;
+  const wordCount = content ? content.trim().split(/\s+/).length : 0;
   const readTimeMinutes = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
   return `${readTimeMinutes} min read`;
 }
