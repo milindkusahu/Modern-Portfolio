@@ -6,6 +6,8 @@ const Navbar = ({ navOpen }) => {
   const activeBox = useRef();
 
   const initActiveBox = () => {
+    if (!activeBox.current || !lastActiveLink.current) return;
+
     activeBox.current.style.top = lastActiveLink.current.offsetTop + "px";
     activeBox.current.style.left = lastActiveLink.current.offsetLeft + "px";
     activeBox.current.style.width = lastActiveLink.current.offsetWidth + "px";
@@ -46,6 +48,11 @@ const Navbar = ({ navOpen }) => {
     {
       label: "Blog",
       link: "#blog",
+      className: "nav-link",
+    },
+    {
+      label: "Black Hole",
+      link: "/blackhole",
       className: "nav-link",
     },
     {
