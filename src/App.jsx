@@ -13,6 +13,7 @@ import Skill from "./components/Skill";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import {
   LiveCodeEditorSkeleton,
@@ -57,9 +58,11 @@ function App() {
           <div className="container">
             <h2 className="headline-2 mb-8 reveal-up">Proof of Work</h2>
             <div className="reveal-up w-full overflow-x-auto pb-4">
-              <Suspense fallback={<GithubCalenderSkeleton />}>
-                <GithubCalender />
-              </Suspense>
+              <ErrorBoundary fallbackMessage="Unable to load GitHub calendar. Please try again later.">
+                <Suspense fallback={<GithubCalenderSkeleton />}>
+                  <GithubCalender />
+                </Suspense>
+              </ErrorBoundary>
             </div>
           </div>
         </section>
@@ -69,9 +72,11 @@ function App() {
           <div className="container">
             <h2 className="headline-2 mb-8 reveal-up">Live Code Editor</h2>
             <div className="reveal-up">
-              <Suspense fallback={<LiveCodeEditorSkeleton />}>
-                <LiveCodeEditor />
-              </Suspense>
+              <ErrorBoundary fallbackMessage="Unable to load code editor. Please try again later.">
+                <Suspense fallback={<LiveCodeEditorSkeleton />}>
+                  <LiveCodeEditor />
+                </Suspense>
+              </ErrorBoundary>
             </div>
           </div>
         </section>
@@ -83,9 +88,11 @@ function App() {
         <section id="blog" className="section">
           <div className="container">
             <div className="reveal-up">
-              <Suspense fallback={<MediumBlogSkeleton />}>
-                <MediumBlog />
-              </Suspense>
+              <ErrorBoundary fallbackMessage="Unable to load blog posts. Please try again later.">
+                <Suspense fallback={<MediumBlogSkeleton />}>
+                  <MediumBlog />
+                </Suspense>
+              </ErrorBoundary>
             </div>
           </div>
         </section>

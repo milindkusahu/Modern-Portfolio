@@ -102,7 +102,7 @@ const Contact = () => {
         </div>
 
         <form
-          action="https://getform.io/f/alllnvra"
+          action={import.meta.env.VITE_GETFORM_ENDPOINT}
           method="POST"
           className="xl:pl-10 2xl:pl-20"
         >
