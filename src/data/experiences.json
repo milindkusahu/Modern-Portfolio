@@ -1,0 +1,26 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "company": "Google",
+      "position": "Senior Frontend Developer",
+      "duration": "Jan 2023 - Present",
+      "location": "Mountain View, CA",
+      "description": "Leading frontend architecture for cloud-based applications. Implemented performance optimizations that improved Core Web Vitals by 40%. Mentored junior developers and established coding standards across teams.",
+      "technologies": ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/330px-Google_%22G%22_logo.svg.png",
+      "type": "work"
+    },
+    {
+      "id": 2,
+      "company": "Google",
+      "position": "Frontend Developer",
+      "duration": "Mar 2021 - Dec 2022",
+      "location": "Mountain View, CA",
+      "description": "Developed and maintained responsive web applications using React and Redux. Collaborated with UX designers to implement pixel-perfect interfaces. Optimized application bundle size by 35% through code splitting.",
+      "technologies": ["React", "Redux", "JavaScript", "Material-UI", "REST APIs"],
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/330px-Google_%22G%22_logo.svg.png",
+      "type": "work"
+    }
+  ]
+}
