@@ -3,11 +3,12 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import experiencesData from "../data/experiences.json";
 
 const WorkExperience = () => {
   const timelineRef = useRef(null);
+  const [activeIcons, setActiveIcons] = useState(new Set());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +30,25 @@ const WorkExperience = () => {
 
       // Update CSS variable for progress
       timeline.style.setProperty('--timeline-progress', `${progress}%`);
+
+      // Check which icons should be active
+      const icons = timeline.querySelectorAll('.vertical-timeline-element-icon');
+      const newActiveIcons = new Set();
+
+      icons.forEach((icon, index) => {
+        const iconRect = icon.getBoundingClientRect();
+        const iconCenter = iconRect.top + iconRect.height / 2;
+        const progressLine = timelineRect.top + (timelineRect.height * progress / 100);
+
+        if (iconCenter <= windowHeight / 2) {
+          newActiveIcons.add(index);
+          icon.classList.add('icon-active');
+        } else {
+          icon.classList.remove('icon-active');
+        }
+      });
+
+      setActiveIcons(newActiveIcons);
     };
 
     window.addEventListener('scroll', handleScroll);
