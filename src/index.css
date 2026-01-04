@@ -162,8 +162,35 @@ body {
 
 /* Work Experience Timeline Customization */
 
+.vertical-timeline {
+  --timeline-progress: 0%;
+  position: relative;
+}
+
 .vertical-timeline::before {
   background: #3f3f46; /* zinc-700 - timeline line */
+}
+
+/* Scroll progress indicator */
+.vertical-timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #38bdf8 0%, #0ea5e9 100%); /* sky-400 to sky-600 gradient */
+  height: var(--timeline-progress);
+  transition: height 0.1s ease-out;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 1170px) {
+  .vertical-timeline::after {
+    left: 20px;
+    transform: translateX(-50%);
+  }
 }
 
 .vertical-timeline-element-content {
@@ -177,6 +204,7 @@ body {
 
 .vertical-timeline-element-icon {
   transition: transform 0.3s ease;
+  z-index: 2 !important;
 }
 
 .vertical-timeline-element-icon:hover {

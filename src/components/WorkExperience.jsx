@@ -3,9 +3,40 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import { useEffect, useRef } from "react";
 import experiencesData from "../data/experiences.json";
 
 const WorkExperience = () => {
+  const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+
+      const timeline = timelineRef.current.querySelector(".vertical-timeline");
+      if (!timeline) return;
+
+      const timelineRect = timeline.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Calculate scroll progress
+      let progress = 0;
+      if (timelineRect.top < windowHeight && timelineRect.bottom > 0) {
+        const visibleHeight = Math.min(windowHeight, timelineRect.bottom) - Math.max(0, timelineRect.top);
+        const totalHeight = timelineRect.height;
+        progress = Math.min(100, Math.max(0, ((windowHeight - timelineRect.top) / (totalHeight + windowHeight)) * 100));
+      }
+
+      // Update CSS variable for progress
+      timeline.style.setProperty('--timeline-progress', `${progress}%`);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section id="experience" className="section">
       <div className="container">
@@ -15,7 +46,7 @@ const WorkExperience = () => {
           <p>My professional journey building exceptional web applications</p>
         </div>
 
-        <div className="reveal-up">
+        <div className="reveal-up" ref={timelineRef}>
           <VerticalTimeline lineColor="#3f3f46">
             {experiencesData.experiences.map((experience) => (
               <VerticalTimelineElement
