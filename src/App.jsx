@@ -68,6 +68,8 @@ function App() {
           </div>
         </section>
 
+        <WorkExperience />
+
         {/* Live Code Editor Section */}
         <section className="section">
           <div className="container">
@@ -83,7 +85,6 @@ function App() {
         </section>
 
         <Skill />
-        <WorkExperience />
         <Projects />
 
         {/* Medium Blog Section */}
