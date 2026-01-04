@@ -23,6 +23,43 @@ const Navbar = ({ navOpen }) => {
     };
   }, []);
 
+  // Scroll-based active link detection
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const targetId = entry.target.getAttribute("id");
+          const targetLink = Array.from(navLinks).find(
+            (link) => link.getAttribute("href") === `#${targetId}`
+          );
+
+          if (targetLink) {
+            navLinks.forEach((link) => link.classList.remove("active"));
+            targetLink.classList.add("active");
+            lastActiveLink.current = targetLink;
+            initActiveBox();
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
+
   const activeCurrentLink = (event) => {
     lastActiveLink.current?.classList.remove("active");
     event.target.classList.add("active");
