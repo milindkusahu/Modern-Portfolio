@@ -91,7 +91,7 @@ const WorkExperience = () => {
                   <img
                     src={experience.icon}
                     alt={experience.company}
-                    className="w-full h-full object-contain p-2 rounded-full"
+                    className="w-full h-full object-contain rounded-full"
                   />
                 }
               >
@@ -102,7 +102,7 @@ const WorkExperience = () => {
                 <p className="text-zinc-400 text-sm mt-1">
                   {experience.duration} • {experience.location}
                 </p>
-                <p className="text-zinc-300 mt-4 leading-relaxed">
+                <p className="text-zinc-300 mt-4 leading-relaxed whitespace-pre-line">
                   {experience.description}
                 </p>
 

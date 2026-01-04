@@ -2,25 +2,53 @@
   "experiences": [
     {
       "id": 1,
-      "company": "Google",
-      "position": "Senior Frontend Developer",
-      "duration": "Jan 2023 - Present",
-      "location": "Mountain View, CA",
-      "description": "Leading frontend architecture for cloud-based applications. Implemented performance optimizations that improved Core Web Vitals by 40%. Mentored junior developers and established coding standards across teams.",
-      "technologies": ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
-      "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/330px-Google_%22G%22_logo.svg.png",
+      "company": "Infor",
+      "position": "Associate Software Engineer",
+      "duration": "Nov 2025 - Present",
+      "location": "Hyderabad, Telangana, India",
+      "description": "A passionate and detail-oriented front-end developer specializing in Angular, dedicated to building responsive, scalable, and high-performance web applications. Proficient in HTML, CSS, JavaScript, and TypeScript, with a strong commitment to learning new technologies and delivering outstanding user experiences.",
+      "technologies": [
+        "Angular",
+        "TypeScript",
+        "JavaScript",
+        "Agile Web Development",
+        "SASS",
+        "NgRx",
+        "GraphQL"
+      ],
+      "icon": "public/company/infor.png",
       "type": "work"
     },
     {
       "id": 2,
-      "company": "Google",
-      "position": "Frontend Developer",
-      "duration": "Mar 2021 - Dec 2022",
-      "location": "Mountain View, CA",
-      "description": "Developed and maintained responsive web applications using React and Redux. Collaborated with UX designers to implement pixel-perfect interfaces. Optimized application bundle size by 35% through code splitting.",
-      "technologies": ["React", "Redux", "JavaScript", "Material-UI", "REST APIs"],
-      "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/330px-Google_%22G%22_logo.svg.png",
+      "company": "RegisterKaro",
+      "position": "Full Stack Developer",
+      "duration": "May 2025 - Jul 2025",
+      "location": "Gurugram, Haryana, India",
+      "description": "I streamlined the WordPress-to-Next.js workflow using ACF-based REST APIs, automating page creation and cutting publishing effort by over 60%. I also integrated Zoho Forms with automated handling and UX-optimized placement, boosting qualified leads by 30%. Additionally, I built Core Web Vitals–optimized Next.js landing pages to improve SEO and conversions.\n\nI developed a custom Node.js script to detect broken links and generate QA-ready CSV reports, improving quality checks. Beyond my primary role, I actively contributed across frontend, backend, and deployment to ensure smooth end-to-end delivery.",
+      "technologies": [
+        "Next.js",
+        "Web Performance", "Node.js", "Zoho CRM", "AWS", "Wordpress Development", "SASS",
+        "React",
+        "Redux",
+        "JavaScript",
+        "REST APIs"
+      ],
+      "icon": "public/company/registerkaro.png",
       "type": "work"
+    },
+    {
+      "id": 3,
+      "company": "Crio.Do",
+      "position": "Full-stack Developer Trainee",
+      "duration": "Mar 2024 - Feb 2025",
+      "location": "Remote",
+      "description": "Completed the Fellowship Full Stack program, gaining hands-on experience in designing, developing, and deploying full-stack web applications. Built multiple industry-relevant projects, following best coding practices, API development, and UI/UX improvements.",
+      "technologies": [
+        "HTTP", "Material UI", "REST APIs", "CSS", "MongoDB", "Git", "Express JS", "Bootstrap", "Mongoose", "HTML5", "Node JS", "JavaScript", "React.js", "Postman"
+      ],
+      "icon": "public/company/crio.do.png",
+      "type": "training"
     }
   ]
 }
