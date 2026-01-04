@@ -16,7 +16,7 @@
         "NgRx",
         "GraphQL"
       ],
-      "icon": "public/company/infor.png",
+      "icon": "company/infor.png",
       "type": "work"
     },
     {
@@ -34,7 +34,7 @@
         "JavaScript",
         "REST APIs"
       ],
-      "icon": "public/company/registerkaro.png",
+      "icon": "company/registerkaro.png",
       "type": "work"
     },
     {
@@ -47,7 +47,7 @@
       "technologies": [
         "HTTP", "Material UI", "REST APIs", "CSS", "MongoDB", "Git", "Express JS", "Bootstrap", "Mongoose", "HTML5", "Node JS", "JavaScript", "React.js", "Postman"
       ],
-      "icon": "public/company/crio.do.png",
+      "icon": "company/crio.do.png",
       "type": "training"
     }
   ]
